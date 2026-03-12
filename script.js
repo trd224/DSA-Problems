@@ -1,31 +1,18 @@
-const nums = [1,1,1,2,2,3];
-let k = 2;
-function topKFrequent(nums, k) {
+// Reverse a string without .reverse()
 
-    let freq = {}
+let str = 'abcdefg';
 
-    for(let num of nums){
-        freq[num] = (freq[num] || 0) + 1
+function reverseString(str){
+    let arr = str.split('');
+    let left = 0;
+    let right = arr.length - 1;
+
+    while(left < right){
+        [arr[left], arr[right]] = [arr[right], arr[left]];
+        left++;
+        right--
     }
-
-    let bucket = Array(nums.length + 1).fill().map(() => [])
-
-    for(let key in freq){
-        bucket[freq[key]].push(Number(key))
-    }
-
-    let result = []
-
-    for(let i = bucket.length - 1; i >= 0; i--){
-        for(let num of bucket[i]){
-            result.push(num)
-
-            if(result.length === k){
-                return result
-            }
-        }
-    }
+    return arr.join('')
 }
 
-console.log(topKFrequent(nums, k))
-
+console.log(reverseString(str));
